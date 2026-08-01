@@ -517,26 +517,30 @@ h1,h2,h3,h4{ font-family: var(--font-display); color: var(--text); line-height: 
    ========================================================================== */
 .svc-card{
   position: relative; border-radius: var(--radius-md); overflow: hidden; background: var(--surface);
-  border: 1px solid var(--border); box-shadow: var(--shadow-sm); transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
   display: flex; flex-direction: column;
 }
-.svc-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+@media (hover: hover){
+  .svc-card{ transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease; }
+  .svc-card:hover{ transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .svc-card:hover .svc-panel::before{ transform: scale(1.08); }
+  .svc-card:hover .card-link svg{ transform: translateX(4px); }
+}
 .svc-panel{
   position: relative; aspect-ratio: 4/3; display: flex; align-items: flex-start; justify-content: space-between; padding: 18px;
   isolation: isolate; overflow: hidden;
 }
-.svc-panel::before{ content:''; position: absolute; inset: 0; z-index: -1; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
-.svc-card:hover .svc-panel::before{ transform: scale(1.08); }
-.svc-panel .svc-num{ font-family: var(--font-display); font-weight: 800; font-size: 15px; color: rgba(255,255,255,.85); background: rgba(255,255,255,.15); backdrop-filter: blur(4px); border-radius: 8px; padding: 4px 10px; }
-.svc-panel .svc-tag{ font-family: var(--font-body); font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.25); border-radius: 100px; padding: 5px 12px; }
-.svc-panel .svc-ic-big{ position: absolute; bottom: 16px; left: 18px; width: 46px; height: 46px; border-radius: 12px; background: rgba(255,255,255,.16); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; }
+.svc-panel::before{ content:''; position: absolute; inset: 0; z-index: -1; }
+@media (hover: hover){ .svc-panel::before{ transition: transform .5s cubic-bezier(.2,.8,.2,1); } }
+.svc-panel .svc-num{ font-family: var(--font-display); font-weight: 800; font-size: 15px; color: rgba(255,255,255,.9); background: rgba(20,26,58,.4); border-radius: 8px; padding: 4px 10px; }
+.svc-panel .svc-tag{ font-family: var(--font-body); font-weight: 700; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.28); border-radius: 100px; padding: 5px 12px; }
+.svc-panel .svc-ic-big{ position: absolute; bottom: 16px; left: 18px; width: 46px; height: 46px; border-radius: 12px; background: rgba(20,26,58,.35); display: flex; align-items: center; justify-content: center; }
 .svc-panel .svc-ic-big svg{ width: 24px; height: 24px; color: #fff; }
 .svc-body{ padding: 22px 22px 24px; flex: 1; display: flex; flex-direction: column; }
 .svc-body h3{ font-size: 17.5px; margin-bottom: 8px; }
 .svc-body p{ color: var(--text-soft); font-size: 14px; margin: 0 0 16px; flex: 1; }
 .svc-body .card-link{ font-size: 13.5px; font-weight: 700; color: var(--royal); display: inline-flex; align-items: center; gap: 6px; }
 .svc-body .card-link svg{ width: 14px; height: 14px; transition: transform .2s ease; }
-.svc-card:hover .card-link svg{ transform: translateX(4px); }
 [data-theme="dark"] .svc-body .card-link{ color: #9DB2FF; }
 
 .svc-1::before{ background: linear-gradient(135deg, #2A46D8, #16227A); }
