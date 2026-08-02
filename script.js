@@ -2,21 +2,32 @@
 (function () {
   const WHATSAPP_NUMBER = '254715774092'; // 0715 774 092 in international format
 
+  // Run each init in isolation: if one throws (missing element, a browser
+  // quirk, whatever), the rest still run. Content visibility never depends
+  // on any of this succeeding — see initReveal() and the CSS it drives.
+  function safe(fn, name) {
+    try {
+      fn();
+    } catch (err) {
+      console.error(`[Pamba] ${name} failed:`, err);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
-    initLoader();
-    initNav();
-    initTheme();
-    initReveal();
-    initBackToTop();
-    initWhatsAppLinks();
-    initFAQ();
-    initBookingForm();
-    initContactForm();
-    initQuoteCalculator();
-    initBeforeAfter();
-    initNewsletter();
-    markActiveNav();
-    initYear();
+    safe(initLoader, 'initLoader');
+    safe(initNav, 'initNav');
+    safe(initTheme, 'initTheme');
+    safe(initReveal, 'initReveal');
+    safe(initBackToTop, 'initBackToTop');
+    safe(initWhatsAppLinks, 'initWhatsAppLinks');
+    safe(initFAQ, 'initFAQ');
+    safe(initBookingForm, 'initBookingForm');
+    safe(initContactForm, 'initContactForm');
+    safe(initQuoteCalculator, 'initQuoteCalculator');
+    safe(initBeforeAfter, 'initBeforeAfter');
+    safe(initNewsletter, 'initNewsletter');
+    safe(markActiveNav, 'markActiveNav');
+    safe(initYear, 'initYear');
   });
 
   function initLoader() {
@@ -58,10 +69,16 @@
 
   function initReveal() {
     const targets = document.querySelectorAll('.reveal, .reveal-stagger');
-    if (!('IntersectionObserver' in window) || targets.length === 0) {
-      targets.forEach((t) => t.classList.add('in'));
-      return;
-    }
+    if (targets.length === 0) return;
+
+    // Content is fully visible by default in CSS (no .anim-ready on <html>).
+    // Only turn the fade/slide-in animation ON once we're certain we can
+    // finish it — i.e. IntersectionObserver exists and every target will
+    // eventually get its .in class.
+    if (!('IntersectionObserver' in window)) return;
+
+    document.documentElement.classList.add('anim-ready');
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -74,6 +91,14 @@
       { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
     );
     targets.forEach((t) => io.observe(t));
+
+    // Hard safety net: if for any reason an element never crosses the
+    // observer threshold (e.g. it's already off-screen below a very short
+    // page, or a browser quirk), force it visible after 2.5s so nothing is
+    // ever permanently stuck at opacity 0.
+    setTimeout(() => {
+      targets.forEach((t) => t.classList.add('in'));
+    }, 2500);
   }
 
   function initBackToTop() {
