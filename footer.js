@@ -16,6 +16,10 @@
           <a href="mailto:pambalaundry@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18v12H3V6Zm0 0 9 7 9-7" stroke="#fff" stroke-width="1.5"/></svg></a>
           <a href="tel:+254715774092" aria-label="Call"><svg viewBox="0 0 24 24" fill="none"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 2 6a2 2 0 0 1 2-2Z" stroke="#fff" stroke-width="1.5"/></svg></a>
         </div>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Pamba+Laundry+Kenyatta+Road,+Juja&destination_place_id=ChIJEYOnkY9HLxgRxOIMsQQKzyg" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:7px; margin-top:14px; color:#fff; font-size:14px; text-decoration:none; border:1px solid rgba(255,255,255,.25); padding:8px 14px; border-radius:999px;">
+          <svg viewBox="0 0 24 24" fill="none" width="15" height="15"><path d="M12 2 2 12l10 10 10-10L12 2Z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 13v-2h5M12 8.5 14.5 11 12 13.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Get Directions
+        </a>
       </div>
       <div>
         <h4>Explore</h4>
